@@ -11,7 +11,7 @@ public class PatientManagement {
 
     @GetMapping("/list")
     public String getPatient(){
-        return "student list";
+                return "student list";
     }
 
     @PostMapping("/add")
