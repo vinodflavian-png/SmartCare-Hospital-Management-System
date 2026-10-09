@@ -1,21 +1,26 @@
 package com.example.smartcare_hospital_ms.Controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.smartcare_hospital_ms.DTO.PatientDTO;
+import com.example.smartcare_hospital_ms.Service.PatientService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
-@RequestMapping("/patient")
+@CrossOrigin
+@RequestMapping(value = "/api/v1/")
 public class PatientManagement {
+    @Autowired
+    private PatientService patientService;
 
-    @GetMapping("/list")
-    public String getPatient(){
-                return "student list";
+    @GetMapping("/getpatients")
+    public List<PatientDTO> getPatient(){
+                return patientService.getAllPatient();
     }
 
-    @PostMapping("/add")
-    public String addPatient(){
-        return "Student added";
+    @PostMapping("/addpatient")
+    public PatientDTO addPatient(@RequestBody PatientDTO patientDTO){
+        return patientService.addPatient(patientDTO);
     }
 }
